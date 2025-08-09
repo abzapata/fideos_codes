@@ -1,0 +1,7 @@
+Algoritmo para nueva tabla de DIMM y Weather data.
+
+1) Para cada espectro de standard RV obtener del header el tiempo de inicio de 
+la exposición (DATE-OBS) y el tiempo de exposición (EXPTIME).
+
+2) Para cada cada standar RV generar un Tiempo de inicio de exposición y Tiempo 
+de término de exposición. 
