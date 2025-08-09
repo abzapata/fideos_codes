@@ -8,6 +8,7 @@ import astropy.io; from astropy.io import fits as pyfits
 
 plt.rcParams['font.size'] = 8 # Fonts size for plots
 
+data_path = '../all_data/'
 #Datos de rango de fechas para analizar
 date_i = "2020-03-10"#input('Write the Initial date to plot in the format "yyyy-mm-dd": ')
 date_f = "2021-12-31"#input('Write the Final date to plot in the format "yyyy-mm-dd": ')
@@ -37,7 +38,7 @@ high_snr = 100
 #OBJECT = input('Write the RV Standard to plot ("HD10700, HD32147, HD72673, HD157347"): ') 
 
 #Carga de datos de temperatura de fideos.
-f_temp = np.loadtxt("tempetatures_fideos.dat", skiprows=1, delimiter=" ", dtype="str")
+f_temp = np.loadtxt(data_path + "tempetatures_fideos.dat", skiprows=1, delimiter=" ", dtype="str")
 T_date = f_temp[:,0]
 T_date = T_date.astype(float)#-2459000
 T1 = f_temp[:,1]
@@ -51,7 +52,7 @@ T4 = T4.astype(float)
 
 
 #Carga de datos de Seeing del DIMM La Silla.
-f_dimm = np.loadtxt("dimm_data.dat", skiprows=1, delimiter=" ", dtype="str")
+f_dimm = np.loadtxt(data_path + "dimm_data.dat", skiprows=1, delimiter=" ", dtype="str")
 d_date = f_dimm[:,0]
 d_date = d_date.astype(float)#-2459000
 d_seeing = f_dimm[:,1]
@@ -59,7 +60,7 @@ d_seeing = d_seeing.astype(float)
 
 
 #Carga de datos de weather La Silla.
-f_weather = np.loadtxt("weather_wdb_all_data.dat", skiprows=1, delimiter=" ", dtype="str")
+f_weather = np.loadtxt(data_path + "weather_wdb_all_data.dat", skiprows=1, delimiter=" ", dtype="str")
 w_date = f_weather[:,0]
 w_date = w_date.astype(float)#-2459000
 w_press = f_weather[:,1]
@@ -72,7 +73,7 @@ w_rel_hum = f_weather[:,4]
 w_rel_hum = w_rel_hum.astype(float)
 
 #Carga de datos de wind de La Silla.
-f_weather = np.loadtxt("wind_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
+f_weather = np.loadtxt(data_path + "wind_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
 wind_date = f_weather[:,0]
 wind_date = wind_date.astype(float)#-2459000
 wind_dir = f_weather[:,1]
@@ -82,7 +83,7 @@ wind_speed = wind_speed.astype(float)
 
 
 #Carga de datos de las RVs standard
-f_rvs = np.loadtxt("RVs_AZ_ALT.dat", skiprows=1, delimiter=" ", dtype="str")
+f_rvs = np.loadtxt(data_path + "RVs_AZ_ALT.dat", skiprows=1, delimiter=" ", dtype="str")
 RV_time = f_rvs[:,0] # tiempo UTC de la observacion
 RV_time = RV_time.astype(str)
 BJD = f_rvs[:,1]
@@ -292,7 +293,7 @@ p1=plt.plot(date_temp,T3_fideos,'g', markersize=3, label="Chiller")
 p2=plt.plot(date_temp,T2_fideos,'b', markersize=3, label="Spec.")
 p3=plt.plot(date_temp,T1_fideos,'r', markersize=3, label="Serv. room")
 p4=plt.plot(date_temp,T4_fideos,'m', markersize=3, label="CCD")
-plt.ylabel('Temperature ${}^{\circ}$C')
+plt.ylabel('Temperature deg C')
 plt.legend(bbox_to_anchor=(1.00, 0.8), loc='upper left', borderaxespad=0)
 plt.axis([JD_i-1, JD_f+1, 13.5, 20.5])
 plt.legend((p1[0],p2[0],p3[0],p4[0]),("Chiller","Spec.","Serv. room","CCD"))
