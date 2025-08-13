@@ -5,7 +5,9 @@ from astropy.time import Time
 # en tres archivos de 1 mill. de datos para agilizar el script. Estos datos estan en JD y se transforman
 # en fechas iso.
 
-f_temp = np.loadtxt("fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
+data_path = "../all_data/"
+
+f_temp = np.loadtxt(data_path + "fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
 date = f_temp[:,0]
 date = date.astype(str)# Date in ISOT format
 Chiller = f_temp[:,1]
@@ -28,4 +30,4 @@ while j < 2917921:
     row = [date[j],JD,Chiller[j],Op_Bench[j],Room[j],CCD[j]]
     save.add_row(row)
     j = j+1
-save.write("fideos_temp_data3.dat", format="ascii", overwrite=True)
+save.write(data_path + "fideos_temp_data3.dat", format="ascii", overwrite=True)

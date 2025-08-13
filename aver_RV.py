@@ -1,7 +1,7 @@
 import numpy as np
 from astropy.time import Time
-
-f_rvs = np.loadtxt("RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
+data_path="../all_data/"
+f_rvs = np.loadtxt(data_path + "RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
 date_RV = f_rvs[:,0]
 date_RV = date_RV.astype(str)
 RV_time = f_rvs[:,1] # tiempo JD de la observacion

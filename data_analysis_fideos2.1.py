@@ -1,14 +1,15 @@
 import numpy as np
-import pandas as pd
+#import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
-from astropy.table import Table
+#from astropy.table import Table
 from astropy.time import Time
 from datetime import datetime
-import astropy.io; from astropy.io import fits as pyfits
+#import astropy.io; from astropy.io import fits as pyfits
 
 plt.rcParams['font.size'] = 8  # Fonts size for plots
 
+data_path = '../all_data/'
 # Define the date range for analysis
 date_i = "2018-01-01"
 date_f = "2018-12-31"
@@ -31,7 +32,7 @@ low_snr = 50
 high_snr = 100
 
 # Load temperature data
-f_temp = np.loadtxt("fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
+f_temp = np.loadtxt(data_path + "fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
 T_date = f_temp[:, 0].astype(str)
 T_time = f_temp[:, 1].astype(float)
 T1 = f_temp[:, 2].astype(float)
@@ -50,7 +51,7 @@ for n in range(0, len(T_time), 3):
         T4_fideos.append(T4[n])
 
 # Load RV data
-f_rvs = np.loadtxt("RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
+f_rvs = np.loadtxt(data_path + "RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
 date_RV = f_rvs[:, 0].astype(str)
 RV_time = f_rvs[:, 1].astype(float)
 BJD = f_rvs[:, 2].astype(float)

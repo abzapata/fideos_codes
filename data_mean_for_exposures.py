@@ -12,6 +12,7 @@ from datetime import datetime
 
 plt.rcParams['font.size'] = 12 # Fonts size for plots
 
+data_path = "../all_data/"
 #Datos de rango de fechas para analizar
 date_i = "2018-01-01" #input('Write the Initial date to plot in the format "yyyy-mm-dd": ')
 date_f = "2023-05-20" #input('Write the Final date to plot in the format "yyyy-mm-dd": ')
@@ -49,7 +50,7 @@ save = Table([[], [], [], [], [], [], [], [], [], [], \
 #OBJECT = input('Write the RV Standard to plot ("HD10700, HD32147, HD72673, HD157347"): ') 
  
 #Carga de datos de Seeing del DIMM La Silla.
-f_dimm = np.loadtxt("dimm_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
+f_dimm = np.loadtxt(data_path + "dimm_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
 d_date = f_dimm[:,0]
 d_date = d_date.astype(str)
 d_JD = f_dimm[:,1]
@@ -69,7 +70,7 @@ for i in range(0,len(d_date)):
 print("Data seeing: ",len(new_d_seeing))
 
 #Carga de datos de weather La Silla.
-f_weather = np.loadtxt("weather_wdb_all_data.dat", skiprows=1, delimiter=" ", dtype="str")
+f_weather = np.loadtxt(data_path + "weather_wdb_all_data.dat", skiprows=1, delimiter=" ", dtype="str")
 w_date = f_weather[:,0]
 w_date = w_date.astype(str)
 w_jd = f_weather[:,1]
@@ -99,7 +100,7 @@ for i in range(0,len(d_date)):
 print("Data press: ",len(new_w_press))
 
 #Carga de datos de wind de La Silla.
-f_weather = np.loadtxt("wind_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
+f_weather = np.loadtxt(data_path + "wind_data_all.dat", skiprows=1, delimiter=" ", dtype="str")
 wind_date = f_weather[:,0]
 wind_date = wind_date.astype(str)#-2459000
 wind_JD = f_weather[:,1]
@@ -123,7 +124,7 @@ for i in range(0,len(d_date)):
 print("Data wind: ",len(new_wind_speed))
 
 #Carga de datos de las RVs standard
-f_rvs = np.loadtxt("RVs_AZ_ALT_all.dat", skiprows=1, delimiter=" ", dtype="str")
+f_rvs = np.loadtxt(data_path + "RVs_AZ_ALT_all.dat", skiprows=1, delimiter=" ", dtype="str")
 date_RV = f_rvs[:,0]
 date_RV = date_RV.astype(str)
 RV_time = f_rvs[:,1] # tiempo JD de la observacion
@@ -251,4 +252,4 @@ for i in range(0,len(new_range_date)):#(len(d_start)): #Fecha y tiempo inicial d
         '{:.1f}'.format(avg_w_amb_press[i]),'{:.2f}'.format(avg_w_amb_temp[i]),'{:.1f}'.format(avg_w_rel_hum[i]),\
         '{:.0f}'.format(avg_wind_speed[i]),'{:.0f}'.format(avg_wind_dir[i])]
     save.add_row(row)
-save.write("RVs_AZ_ALT_all_try4.dat", format='ascii', overwrite=True)
+save.write(data_path + "RVs_AZ_ALT_all_try4.dat", format='ascii', overwrite=True)
