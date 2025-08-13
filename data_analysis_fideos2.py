@@ -8,6 +8,7 @@ from datetime import datetime
 import astropy.io; from astropy.io import fits as pyfits
 
 plt.rcParams['font.size'] = 8 # Fonts size for plots
+data_path = '../all_data/'
 
 #Datos de rango de fechas para analizar
 date_i = "2018-01-01" #"2020-10-01"#input('Write the Initial date to plot in the format "yyyy-mm-dd": ')
@@ -37,7 +38,7 @@ high_snr = 100
 #OBJECT = input('Write the RV Standard to plot ("HD10700, HD32147, HD72673, HD157347"): ') 
 
 #Carga de datos de temperatura de fideos.
-f_temp = np.loadtxt("fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
+f_temp = np.loadtxt(data_path + "fideos_temperatures.dat", skiprows=1, delimiter=" ", dtype="str")
 T_date = f_temp[:,0]
 T_date = T_date.astype(str)#-2459000
 T_time = f_temp[:,1]
@@ -67,7 +68,7 @@ while n < len(T_time):
 	n=n+3
 
 #Carga de datos de las RVs standard
-f_rvs = np.loadtxt("RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
+f_rvs = np.loadtxt(data_path + "RVs_AZ_ALT_all_dimm_meteo.dat", skiprows=1, delimiter=" ", dtype="str")
 date_RV = f_rvs[:,0]
 date_RV = date_RV.astype(str)
 RV_time = f_rvs[:,1] # tiempo JD de la observacion
